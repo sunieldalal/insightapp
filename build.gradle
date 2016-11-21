@@ -38,4 +38,9 @@ dependencies {
 	runtime('org.springframework.boot:spring-boot-devtools')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	
+	// http://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-dynamodb
+	compile group: 'com.amazonaws', name: 'aws-java-sdk-dynamodb', version: '1.11.5'
+	// Supports Validation
+	compile 'javax.validation:validation-api:1.1.0.Final'
 }
