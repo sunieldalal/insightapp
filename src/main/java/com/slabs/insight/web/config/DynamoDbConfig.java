@@ -29,9 +29,9 @@ public class DynamoDbConfig {
     	  
         AmazonDynamoDBClient client = new AmazonDynamoDBClient(
             new AWSCredentialsProviderChain(
-            	// /InstanceProfile will resolve credentials for production environment
+            	// /InstanceProfile will resolve credentials for production env
                 new InstanceProfileCredentialsProvider(),  
-                // ProfileCredentialsProvider will resolve credentials for local dev environment
+                // ProfileCredentialsProvider will resolve creds for local env
                 new ProfileCredentialsProvider("insightapp")));
         
         
@@ -41,7 +41,8 @@ public class DynamoDbConfig {
         return client;
       }
       catch (Exception ex){
-        // If initialization of dynamoDB fails for any reason, throw runtime exception
+        // If initialization of dynamoDB fails for 
+    	// any reason, throw runtime exception
         LOGGER.info("DynamoDB Initialization Failed: " + ex.getMessage());
         throw new RuntimeException("DynamoDB Initialization Failed", ex); 
       }      
