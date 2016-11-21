@@ -147,30 +147,34 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
 	try {
 
-		AttributeValue employeeIdAttrValue = mapEmployeeRecord.get(Employee.EMPLOYEE_ID);
-		AttributeValue firstNameAttrValue = mapEmployeeRecord.get(Employee.FIRST_NAME);
-		AttributeValue lastNameAttrValue = mapEmployeeRecord.get(Employee.LAST_NAME);
-		AttributeValue joiningDateAttrValue = mapEmployeeRecord.get(Employee.JOINING_DATE);
-		AttributeValue locationAttrValue = mapEmployeeRecord.get(Employee.LOCATION);
+	AttributeValue employeeIdAttrValue = mapEmployeeRecord.get(Employee.EMPLOYEE_ID);
+	AttributeValue firstNameAttrValue = mapEmployeeRecord.get(Employee.FIRST_NAME);
+	AttributeValue lastNameAttrValue = mapEmployeeRecord.get(Employee.LAST_NAME);
+	AttributeValue joiningDateAttrValue = mapEmployeeRecord.get(Employee.JOINING_DATE);
+	AttributeValue locationAttrValue = mapEmployeeRecord.get(Employee.LOCATION);
 
-		// Being primary key, should always be non null
-		employee.setEmployeeId(Long.valueOf(employeeIdAttrValue.getN()));
+	// Being primary key, should always be non null
+	employee.setEmployeeId(Long.valueOf(employeeIdAttrValue.getN()));
 
-		if (firstNameAttrValue != null) {
-			employee.setFirstName(mapEmployeeRecord.get(Employee.FIRST_NAME).getS());
-		}
+	if (firstNameAttrValue != null) {
+		employee.setFirstName(
+				mapEmployeeRecord.get(Employee.FIRST_NAME).getS());
+	}
 
-		if (lastNameAttrValue != null) {
-			employee.setLastName(mapEmployeeRecord.get(Employee.LAST_NAME).getS());
-		}
+	if (lastNameAttrValue != null) {
+		employee.setLastName(
+				mapEmployeeRecord.get(Employee.LAST_NAME).getS());
+	}
 
-		if (joiningDateAttrValue != null) {
-			employee.setJoiningDate(mapEmployeeRecord.get(Employee.JOINING_DATE).getS());
-		}
+	if (joiningDateAttrValue != null) {
+		employee.setJoiningDate(
+				mapEmployeeRecord.get(Employee.JOINING_DATE).getS());
+	}
 
-		if (locationAttrValue != null) {
-			employee.setLocation(mapEmployeeRecord.get(Employee.LOCATION).getS());
-		}
+	if (locationAttrValue != null) {
+		employee.setLocation(
+				mapEmployeeRecord.get(Employee.LOCATION).getS());
+	}
 
 	} catch (NumberFormatException ex) {
 		System.out.println(ex.getMessage());
