@@ -25,13 +25,18 @@ public class DynamoDbConfig {
     @Bean
     public AmazonDynamoDBClient amazonDynamoDbClientService() {
        
-      try {      
+      try {  
+    	  
         AmazonDynamoDBClient client = new AmazonDynamoDBClient(
-            new AWSCredentialsProviderChain(            
-                new InstanceProfileCredentialsProvider(), // credentials resolved for production environment     
-                new ProfileCredentialsProvider("insightapp")));// used for local development environment
+            new AWSCredentialsProviderChain(
+            	// /InstanceProfile will resolve credentials for production environment
+                new InstanceProfileCredentialsProvider(),  
+                // ProfileCredentialsProvider will resolve credentials for local dev environment
+                new ProfileCredentialsProvider("insightapp")));
         
-        client.setRegion(Region.getRegion(Regions.US_WEST_2)); // Set the AWS region - Default is US_EAST_1
+        
+        // Set the AWS region - Default is US_EAST_1
+        client.setRegion(Region.getRegion(Regions.US_WEST_2)); 
         LOGGER.info("DynamoDB Initialization Succeeded");
         return client;
       }
