@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>All Employees</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinclude :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(lstEmployees)}">
+        <h2>Employee List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Employee Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Joining Date</th>
+                <th>Location</th>
+                <th>Edit</th>
+            </tr>
+            <tr th:each="employee : ${lstEmployees}">
+                <td th:text="${employee.employeeId}">Id</td>
+                <td th:text="${employee.firstName}">firstName</td>
+                <td th:text="${employee.lastName}">lastName</td>
+                <td th:text="${employee.joiningDate}">joiningDate</td>
+                <td th:text="${employee.location}">location</td>
+                <td>
+                	<a th:href="@{'/employee/edit/'}+ ${employee.employeeId}">Edit</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

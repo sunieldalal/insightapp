@@ -39,8 +39,14 @@ dependencies {
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	
-	// http://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-dynamodb
+	// AWS Java SDK support
 	compile group: 'com.amazonaws', name: 'aws-java-sdk-dynamodb', version: '1.11.5'
 	// Supports Validation
 	compile 'javax.validation:validation-api:1.1.0.Final'
+	
+	// Added for thymeleaf support
+	compile("org.thymeleaf:thymeleaf-spring4")
+    compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
+    compile 'org.webjars:bootstrap:3.3.4'
+    compile 'org.webjars:jquery:2.1.4'
 }

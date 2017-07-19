@@ -80,6 +80,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		LOGGER.error("Problem Connecting to DynamoDb: " + ex.getMessage());
 		throw new RuntimeException(ex.getMessage(), ex);
 	}
+	LOGGER.info("Employee with EmployeeId: " + EmployeeFromDB.getEmployeeId() + " retrieved successfully." );
 	return EmployeeFromDB;
   }
 

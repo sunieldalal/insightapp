@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.slabs.insight.domain.Employee;
+import com.slabs.insight.web.controller.employee.EmployeeResource;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -35,17 +35,17 @@ public class EmployeeServiceImplIntegrationTest {
   public void testCreateGetAndDeleteEmployeeHappyPath() {
 
 	// data setup
-	Employee employee = new Employee();
+	EmployeeResource employee = new EmployeeResource();
 	employee.setFirstName("Alex");
 	employee.setLastName("Plex");
 	employee.setLocation("Sydney");
 
-	Employee emp = employeeService.createEmployee(employee);
+	EmployeeResource emp = employeeService.createEmployee(employee);
 
 	LOGGER.info("Find employee having employeeId=" + emp.getEmployeeId());
 
 	// Get The record from Database
-	Employee employee1 = employeeService.getEmployee(emp.getEmployeeId());
+	EmployeeResource employee1 = employeeService.getEmployee(emp.getEmployeeId());
 
 	assertNotNull(employee1);
 
@@ -57,8 +57,8 @@ public class EmployeeServiceImplIntegrationTest {
   public void testUpdateEmployeeHappyPath() {
 
 	// data setup
-	Employee testEmployee = new Employee();
-	Employee employee = employeeService.createEmployee(testEmployee);
+	EmployeeResource testEmployee = new EmployeeResource();
+	EmployeeResource employee = employeeService.createEmployee(testEmployee);
 
 	LOGGER.info("Employee firstName before Update: " + employee.getFirstName());
 	LOGGER.info("Employee lastName before Update: " + employee.getLastName());
@@ -68,7 +68,7 @@ public class EmployeeServiceImplIntegrationTest {
 	employee.setLocation("Johannesburg");
 
 	// TEST METHOD
-	Employee updatedEmployee = employeeService.updateEmployee(employee);
+	EmployeeResource updatedEmployee = employeeService.updateEmployee(employee);
 
 	LOGGER.info("Employee firstName after Update: " + updatedEmployee.getFirstName());
 	LOGGER.info("Employee lastName after Update: " + updatedEmployee.getLastName());
@@ -86,7 +86,7 @@ public class EmployeeServiceImplIntegrationTest {
   public void testGetAllEmployees() {
 
 	// Create Employee so that we can delete
-	List<Employee> lstEmployees = employeeService.getAllEmployees();
+	List<EmployeeResource> lstEmployees = employeeService.getAllEmployees();
 
 	// validate output
 	assertTrue(lstEmployees.size() > 0);

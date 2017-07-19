@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Employee Management</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinclude :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <h2>Employee Details</h2>
+    <div>
+        <form class="form-horizontal" th:object="${employeeDetails}" th:action="@{/employee}" method="post">
+            <div class="form-group">
+                <label th:if="${employeeDetails?.employeeId}" class="col-sm-2 control-label">Employee Id:</label>
+                <div class="col-sm-4">
+                    <!-- Display field value if it exists, otherwise display default value, if any -->
+                    <label class="control-label" th:if="${employeeDetails?.employeeId}" th:text="*{employeeId}"></label>
+                    <input type="hidden" class="form-control" th:if="${employeeDetails?.employeeId}" th:field="*{employeeId}"/>                    
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">First Name:</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" th:if="${employeeDetails}" th:field="*{firstName}"/>
+                </div>
+            </div>
+             <div class="form-group">
+                <label class="col-sm-2 control-label">Last Name:</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" th:if="${employeeDetails}" th:field="*{lastName}"/>
+                </div>
+            </div>
+             <div class="form-group">
+                <label class="col-sm-2 control-label">Joining Date:</label>
+                <div class="col-sm-4">
+                    <input type="date" class="form-control" th:if="${employeeDetails}" th:field="*{joiningDate}"/>
+                </div>
+            </div>
+            <div class="dropdown">
+             	<label class="col-sm-2 control-label">Location:</label>
+                <div class="col-sm-4">
+               
+ 					  <select th:if="${employeeDetails}" th:field="*{location}" class="form-control">
+            		    <option value="Sunnyvale">Sunnyvale</option>
+                		<option value="SanAntonio">San Antonio</option>
+                		<option value="NewDelhi">New Delhi</option>
+ 			          </select>
+					</div>
+             	</div>	
+	      	
+            <div class="row">
+                <button type="submit" class="btn btn-primary">Add / Update Employee</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

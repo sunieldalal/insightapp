@@ -1,0 +1,21 @@
+<div th:fragment="header">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+                <ul class="nav navbar-nav">
+                    <li><a href="#" th:href="@{/employees}">Manage Employees</a></li>
+                    <li><a href="#" th:href="@{/employee/add}">Add New Employee</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+	<!-- Jumbotron -->
+      <div class="jumbotron">
+        <h1>Insight Dashboard</h1>
+        <p class="lead">Making employee management easier everyday!</p>
+      </div>
+    
+</div>

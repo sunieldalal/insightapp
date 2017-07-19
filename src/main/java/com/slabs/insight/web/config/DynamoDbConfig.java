@@ -32,7 +32,7 @@ public class DynamoDbConfig {
             	// /InstanceProfile will resolve credentials for production env
                 new InstanceProfileCredentialsProvider(),  
                 // ProfileCredentialsProvider will resolve creds for local env
-                new ProfileCredentialsProvider("insightapp")));
+                new ProfileCredentialsProvider()));
         
         
         // Set the AWS region - Default is US_EAST_1

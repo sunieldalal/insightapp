@@ -2,15 +2,18 @@ package com.slabs.insight.services;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.slabs.insight.domain.Employee;
 import com.slabs.insight.repository.EmployeeRepository;
+import com.slabs.insight.web.controller.employee.EmployeeResource;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -22,34 +25,42 @@ public class EmployeeServiceImpl implements EmployeeService {
 	EmployeeRepository EmployeeRepo;
 
 	@Override
-	public Employee createEmployee(Employee EmployeeInfo) {
+	public EmployeeResource createEmployee(EmployeeResource EmployeeInfo) {
 		
-		// 
 		EmployeeInfo.setEmployeeId(generateUniqueEmployeeId());
 		
 		LOGGER.info("Create new Employee {}" + EmployeeInfo.getEmployeeId());
-		return EmployeeRepo.createEmployee(EmployeeInfo);
+		return EmployeeRepo.createEmployee(new Employee(EmployeeInfo)).toEmployeeResource();
 	}
 
 	@Override
-	public List<Employee> getAllEmployees() {
+	public List<EmployeeResource> getAllEmployees() {
 
 		LOGGER.info("Get All Employees");
-		return EmployeeRepo.getAllEmployees();
+		List<Employee> lstEmployee = EmployeeRepo.getAllEmployees();
+		
+		List<EmployeeResource> lstEmployeeResource = new ArrayList<EmployeeResource>();
+		
+		for(Employee emp : lstEmployee){
+			EmployeeResource empResource = new EmployeeResource();
+			BeanUtils.copyProperties(emp, empResource);
+			lstEmployeeResource.add(empResource);
+		}
+		return lstEmployeeResource;
 	}
 
 	@Override
-	public Employee getEmployee(Long pEmployeeId) {
+	public EmployeeResource getEmployee(Long pEmployeeId) {
 
 		LOGGER.info("Find Employee by Id {}" + pEmployeeId);
-		return EmployeeRepo.getEmployeeById(pEmployeeId);
+		return EmployeeRepo.getEmployeeById(pEmployeeId).toEmployeeResource();
 	}
 
 	@Override
-	public Employee updateEmployee(Employee pEmployeeInfo) {
+	public EmployeeResource updateEmployee(EmployeeResource pEmployeeInfo) {
 
 		LOGGER.info("Update Employee by Id {}" + pEmployeeInfo.getEmployeeId());
-		return EmployeeRepo.updateEmployee(pEmployeeInfo);
+		return EmployeeRepo.updateEmployee(new Employee(pEmployeeInfo)).toEmployeeResource();
 	}
 
 	@Override
@@ -63,7 +74,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * Helps generate unique UUID for employeeId
 	 */
 	public Long generateUniqueEmployeeId() {
-		return Long.valueOf(new BigInteger(130, random).longValue());
+		return Long.valueOf(new BigInteger(30, random).longValue());
 	}
 
 }

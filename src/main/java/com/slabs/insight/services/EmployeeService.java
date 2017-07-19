@@ -2,17 +2,17 @@ package com.slabs.insight.services;
 
 import java.util.List;
 
-import com.slabs.insight.domain.Employee;
+import com.slabs.insight.web.controller.employee.EmployeeResource;
 
 public interface EmployeeService {
 
-	Employee createEmployee(Employee Employee);
+	EmployeeResource createEmployee(EmployeeResource Employee);
 
-	Employee getEmployee(Long pEmployeeId);
+	EmployeeResource getEmployee(Long pEmployeeId);
 
-	List<Employee> getAllEmployees();
+	List<EmployeeResource> getAllEmployees();
 
-	Employee updateEmployee(Employee Employee);
+	EmployeeResource updateEmployee(EmployeeResource Employee);
 
 	boolean deleteEmployee(Long pEmployeeId);
 
